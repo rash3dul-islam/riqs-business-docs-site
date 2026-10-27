@@ -1,0 +1,208 @@
+/* Look and feel modelled on the KLAX docs (app.selise.ai/docs):
+   Poppins, zinc greys, white header, quiet sidebar, black accents. */
+
+:root, [data-md-color-scheme="default"] {
+  --k-fg: #09090b;
+  --k-muted: #71717a;
+  --k-border: #e4e4e7;
+  --k-soft: #f4f4f5;
+  --k-box: #fafafa;
+  --k-info: #3b82f6;
+  --md-text-font: "Poppins";
+  --md-default-fg-color: var(--k-fg);
+  --md-default-fg-color--light: var(--k-muted);
+  --md-default-bg-color: #ffffff;
+  --md-primary-fg-color: #ffffff;
+  --md-primary-bg-color: var(--k-fg);
+  --md-accent-fg-color: var(--k-fg);
+  --md-typeset-a-color: var(--k-fg);
+  --md-typeset-table-color: var(--k-border);
+}
+
+[data-md-color-scheme="slate"] {
+  --k-fg: #fafafa;
+  --k-muted: #a1a1aa;
+  --k-border: #27272a;
+  --k-soft: #18181b;
+  --k-box: #111113;
+  --md-default-fg-color: var(--k-fg);
+  --md-default-fg-color--light: var(--k-muted);
+  --md-default-bg-color: #09090b;
+  --md-primary-fg-color: #09090b;
+  --md-primary-bg-color: var(--k-fg);
+  --md-accent-fg-color: var(--k-fg);
+  --md-typeset-a-color: var(--k-fg);
+  --md-code-bg-color: #18181b;
+}
+
+body { font-size: 14px; }
+.md-grid { max-width: 1440px; }
+
+/* Header: white bar, thin bottom line, search in the middle */
+.md-header, .md-header--shadow {
+  background: var(--md-default-bg-color);
+  color: var(--k-fg);
+  box-shadow: none;
+  border-bottom: 1px solid var(--k-border);
+}
+.md-header__inner { height: 3.2rem; }
+.md-header__title { font-weight: 700; letter-spacing: -0.01em; }
+.md-header__button.md-logo { margin: 0 0.6rem 0 0.4rem; padding: 0; }
+.md-header__button.md-logo img { height: 1.3rem; width: auto; }
+[data-md-color-scheme="slate"] .md-header__button.md-logo img { filter: brightness(2.2); }
+/* Logo only, like KLAX; the page title still shows in the browser tab */
+.md-header__title { visibility: hidden; flex-grow: 0; width: 0; margin: 0; }
+.md-search { flex: 0 0 auto; margin: 0 auto; }
+.md-search__form {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--k-border);
+  border-radius: 0.4rem;
+  height: 2.1rem;
+}
+.md-search__form:hover { background: var(--k-box); }
+.md-search__input { color: var(--k-fg); font-size: 0.7rem; }
+.md-search__input::placeholder, .md-search__icon { color: var(--k-muted); }
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form { border-radius: 0.4rem 0.4rem 0 0; }
+.md-search__output { border-radius: 0 0 0.4rem 0.4rem; }
+.md-tabs { display: none; }
+/* Search centre, theme toggle and "Back to app" on the right, like KLAX */
+.md-header__inner > .md-header__option { order: 5; }
+.md-header__inner > .md-search { order: 3; }
+.md-header__inner > .md-header__button[for="__search"] { order: 4; }
+.md-header__inner > .k-back { order: 6; }
+.md-header__inner > .md-header__source { display: none; }
+
+/* Left sidebar: uppercase group labels, plain links, soft active pill */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary { border-right: 1px solid var(--k-border); }
+  .md-nav--primary > .md-nav__title { display: none; }
+}
+.md-nav { font-size: 0.7rem; }
+.md-nav__item--section > .md-nav__link,
+.md-nav__item--section > label.md-nav__link {
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--k-fg);
+  margin-top: 1.2em;
+}
+.md-nav__item--nested .md-nav__item--nested > .md-nav__link {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--k-muted);
+  font-weight: 600;
+}
+.md-nav--primary .md-nav__link {
+  color: var(--k-muted);
+  padding: 0.3rem 0.5rem;
+  margin-top: 0.1rem;
+  border-radius: 0.3rem;
+}
+.md-nav--primary .md-nav__link:hover { color: var(--k-fg); }
+.md-nav--primary .md-nav__link--active,
+.md-nav--primary .md-nav__item .md-nav__link--active {
+  color: var(--k-fg);
+  font-weight: 600;
+  background: var(--k-soft);
+}
+.md-nav--primary .md-nav__item--section > .md-nav__link { background: none; }
+
+/* Right "On this page": black bar on the current heading */
+.md-nav--secondary > .md-nav__title {
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--k-muted);
+  background: none;
+  box-shadow: none;
+}
+.md-nav--secondary > .md-nav__list { border-left: 1px solid var(--k-border); }
+.md-nav--secondary .md-nav__link {
+  color: var(--k-muted);
+  padding-left: 0.7rem;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+}
+.md-nav--secondary .md-nav__link--active,
+.md-nav--secondary .md-nav__link:hover {
+  color: var(--k-fg);
+  border-left-color: var(--k-fg);
+}
+
+/* Content */
+.md-content { max-width: 40rem; }
+.md-typeset { font-size: 0.8rem; line-height: 1.7; color: var(--k-fg); }
+.md-typeset h1 {
+  font-size: 1.6rem; font-weight: 600; color: var(--k-fg);
+  letter-spacing: -0.02em; margin-bottom: 0.6em;
+}
+.md-typeset h2 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; margin-top: 2em; }
+.md-typeset h3 { font-size: 0.9rem; font-weight: 600; }
+.md-typeset a { text-decoration: underline; text-decoration-color: var(--k-border); text-underline-offset: 3px; }
+.md-typeset a:hover { color: var(--k-fg); text-decoration-color: var(--k-fg); }
+.md-typeset .headerlink { text-decoration: none; }
+.md-typeset strong { font-weight: 600; }
+
+/* Blockquotes are our callouts: grey box with an info icon */
+.md-typeset blockquote:not([class]) {
+  position: relative;
+  background: var(--k-box);
+  border: 1px solid var(--k-border);
+  border-radius: 0.4rem;
+  color: var(--k-fg);
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  margin: 1.4em 0;
+}
+.md-typeset blockquote:not([class])::before {
+  content: "i";
+  position: absolute; left: 1rem; top: 1.05rem;
+  width: 0.8rem; height: 0.8rem;
+  border: 1.5px solid var(--k-info); border-radius: 50%;
+  color: var(--k-info);
+  font: 600 0.55rem/0.75rem "Poppins", sans-serif;
+  text-align: center;
+}
+.md-typeset blockquote > :first-child { margin-top: 0; }
+.md-typeset blockquote > :last-child { margin-bottom: 0; }
+
+/* Tables: thin lines, light header */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--k-border);
+  border-radius: 0.4rem;
+  box-shadow: none;
+  font-size: 0.72rem;
+}
+.md-typeset table:not([class]) th {
+  background: var(--k-box);
+  color: var(--k-fg);
+  font-weight: 600;
+  border-bottom: 1px solid var(--k-border);
+}
+.md-typeset table:not([class]) td { border-top: 1px solid var(--k-border); }
+
+/* Screenshots: rounded frame */
+.md-typeset img {
+  border: 1px solid var(--k-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.md-typeset code { border-radius: 0.25rem; }
+
+/* Footer: quiet */
+.md-footer, .md-footer-meta { background: var(--md-default-bg-color); color: var(--k-muted); }
+.md-footer__link, .md-footer__title { color: var(--k-fg); }
+.md-footer-meta { border-top: 1px solid var(--k-border); }
+
+/* "Back to app" link at the right of the header */
+.k-back {
+  margin: 0 0.8rem 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--k-fg);
+  white-space: nowrap;
+}
+.k-back:hover { color: var(--k-muted); }
+@media screen and (max-width: 44.9375em) { .k-back { display: none; } }
